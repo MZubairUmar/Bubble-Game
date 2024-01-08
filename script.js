@@ -1,14 +1,15 @@
-var timer=6;
+var timer=60;
+var score=0; 
+var hitrn=0;
 
 function makebubble(){
 var clutter = "";
 for(var i=1; i<=70; i++){
-clutter += `<a href="#" class="bubble">${i}</a>`;
+clutter += `<a href="#" onclick={scorenum(${i})} class="bubble">${i}</a>`;
 }
 
 document.querySelector("#pbtm").innerHTML = clutter
 }
-
 
 function runTimer(){
     var timerint= setInterval(counter,1000)
@@ -19,22 +20,35 @@ function runTimer(){
             document.querySelector("#timerval").textContent = timer;
         } else{
             clearInterval(timerint);
+            document.querySelector("#pbtm").innerHTML="";
             console.log("stop")
         }
     }
 }
 
-
 function getNewhit(){
-    var rn = Math.floor(Math.random()*10);
-    document.querySelector("#hitvalu").textContent = rn;
+    hitrn = Math.floor(Math.random()*10);
+    document.querySelector("#hitvalu").textContent = hitrn;
 }
 
-function scorenum(){
-    var score= 10;
-    score += 10;
-    document.querySelector("#scorenu").textContent = score;
+function scorenum(valu){ 
+    if(valu==hitrn)
+        score += 10;
+   else
+        score -= 10;
+   
+   document.querySelector("#scorenu").textContent = score;
+   getNewhit()
 }
+
+document.querySelector("#pbtm").addEventListener("click",function (dets){
+    var clickednum = console.log(Number(dets.target.textContents));
+    if(clickednum===hitrn){
+        scorenum();
+        makebubble();
+        getNewhit(); 
+    }
+} );
 runTimer();
 makebubble();
 getNewhit();
