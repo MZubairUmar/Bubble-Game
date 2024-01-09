@@ -2,6 +2,11 @@ var timer=60;
 var score=0; 
 var hitrn=0;
 
+function myFunction(){
+    console.log("khjfrdfg")
+    document.body.classList.toggle("dark-mode")
+}
+
 function makebubble(){
 var clutter = "";
 for(var i=1; i<=70; i++){
@@ -20,7 +25,7 @@ function runTimer(){
             document.querySelector("#timerval").textContent = timer;
         } else{
             clearInterval(timerint);
-            document.querySelector("#pbtm").innerHTML="";
+            document.querySelector("#pbtm").innerHTML="<h1 class='gameover'>Game over</h1>";
             console.log("stop")
         }
     }
